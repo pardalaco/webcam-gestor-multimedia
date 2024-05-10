@@ -1,4 +1,5 @@
-import compress, video
+import compress
+import video
 import time
 from datetime import datetime, timedelta
 
@@ -17,17 +18,23 @@ def get_date_previous_day():
     fecha_anterior = fecha_actual.strftime('%Y-%m-%d')
     return fecha_anterior
 
+def main():
+    print("Starting program dailyRoutine.py")
 
+    try:
+        while True:
+            wait_midnight()
+            print("Daily routine running...")
 
-while True:
-    wait_midnight()
-    print("Daily routine running...")
+            # Comprimir carpetas
+            compress.comprimir_carpetas_antiguas()
 
-    # Comprimir carpetas
-    compress.comprimir_carpetas_antiguas()
+            # Generate video
+            nombre_video_salida = get_date_previous_day()
+            ruta_carpeta_entrada_video = "./img/" + nombre_video_salida
+            video.crear_video_desde_imagenes(ruta_carpeta_entrada_video, nombre_video_salida)
+    except KeyboardInterrupt:
+        print("\nCtrl + C detectado. Deteniendo el programa dailyRoutine.py.")
 
-    # Generate video
-    nombre_video_salida = get_date_previous_day()
-    ruta_carpeta_entrada_video="./img/" + nombre_video_salida
-    video.crear_video_desde_imagenes(ruta_carpeta_entrada_video, nombre_video_salida)
-
+if __name__ == "__main__":
+    main()

@@ -50,15 +50,22 @@ def suspender_programa(minutos):
     segundos = minutos * 60
     # Suspender el programa durante el tiempo especificado
     time.sleep(segundos)
-    # print(f"El programa ha sido suspendido durante {minutos} minutos y ha vuelto a reanudarse.")
 
-# URL de la página web
-url_pagina = 'https://www.acifalcoi.com/webcam/menejador.jpg'
+def main():
+    print("Starting imgDownloader.py")
 
-# Directorio donde se guardarán las imágenes descargadas
-directorio_destino = './img'
+    # URL de la página web
+    url_pagina = 'https://www.acifalcoi.com/webcam/menejador.jpg'
 
-# Llamar a la función para descargar la imagen
-while True:
-    descargar_imagen(url_pagina, directorio_destino)
-    suspender_programa(1.05)
+    # Directorio donde se guardarán las imágenes descargadas
+    directorio_destino = './img'
+
+    try:
+        while True:
+            descargar_imagen(url_pagina, directorio_destino)
+            suspender_programa(1.05)
+    except KeyboardInterrupt:
+        print("\nCtrl + C detectado. Deteniendo el programa imgDownloader.py.")
+
+if __name__ == "__main__":
+    main()
