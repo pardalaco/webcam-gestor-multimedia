@@ -1,8 +1,9 @@
 import os
 import datetime
+import shutil
 import zipfile
 
-def comprimir_carpetas_antiguas(ruta_carpeta="./img/", dias=5, ruta_guardado="./"):
+def comprimir_carpetas_antiguas(ruta_carpeta="./img/", dias=5, ruta_guardado="./zips/"):
     # Verificar si la carpeta de entrada existe
     if not os.path.isdir(ruta_carpeta):
         print(f"La carpeta a comprimir {ruta_carpeta} no existe.")
@@ -44,7 +45,8 @@ def comprimir_carpetas_antiguas(ruta_carpeta="./img/", dias=5, ruta_guardado="./
                             ruta_relativa = os.path.relpath(ruta_completa, ruta_carpeta_completa)
                             zip_ref.write(ruta_completa, ruta_relativa)
                 
-                print(f"Carpeta {nombre_carpeta} comprimida correctamente.")
+                # Eliminar la carpeta después de comprimir
+                shutil.rmtree(ruta_carpeta_completa)
+                
+                print(f"Carpeta {nombre_carpeta} comprimida y eliminada correctamente.")
 
-# Ejemplo de uso: comprimir carpetas en "./img/" que tengan más de 7 días de antigüedad y guardar los ZIP en "./backup/"
-comprimir_carpetas_antiguas("/Volumes/USB_C_DANI/08_programacio/Menejador/img/", 1)
