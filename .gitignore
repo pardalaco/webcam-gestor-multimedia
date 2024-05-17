@@ -1,4 +1,5 @@
 img/*
 video/*
 zips/*
+yolo_object_detector/model/yolov3.weights
 .DS_Store

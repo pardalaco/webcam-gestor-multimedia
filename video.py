@@ -1,7 +1,13 @@
 import cv2
 import os
+import yolo_object_detector.yolo_detector_function as yolo
 
-def crear_video_desde_imagenes(ruta_carpeta_entrada_video, nombre_video_salida='output_video', ruta_video_salida='./video/', formato='.mp4', fps=30):
+def crear_video_desde_imagenes(ruta_carpeta_entrada_video, nombre_video_salida='output_video', ruta_video_salida='./video/sin_procesar/', formato='.mp4', fps=30):
+    # Verificar si la ruta de salida existe, si no, crearla
+    if not os.path.exists(ruta_video_salida):
+        os.makedirs(ruta_video_salida)
+        print("Carpeta creada: "+ruta_video_salida)
+
     # Obtener la lista de nombres de archivos en la carpeta
     lista_archivos = os.listdir(ruta_carpeta_entrada_video)
     # Filtrar solo los archivos de imagen (puedes ajustar esta lógica según tus necesidades)
@@ -19,7 +25,7 @@ def crear_video_desde_imagenes(ruta_carpeta_entrada_video, nombre_video_salida='
     altura, ancho, _ = primer_imagen.shape
     
     # Configurar el codec de video y el objeto VideoWriter
-    codec = cv2.VideoWriter_fourcc(*'XVID')
+    codec = cv2.VideoWriter_fourcc(*'mp4v')
     video_salida = cv2.VideoWriter(os.path.join(ruta_video_salida, nombre_video_salida + formato), codec, fps, (ancho, altura))
     
     # Iterar sobre cada imagen, agregarla al video y escribir el video
@@ -33,3 +39,39 @@ def crear_video_desde_imagenes(ruta_carpeta_entrada_video, nombre_video_salida='
     video_salida.release()
     print(f"¡Video '{nombre_video_salida}{formato}' creado exitosamente en '{ruta_video_salida}'!")
 
+def procesar_video(ruta_video, nombre_video_salida='output_video', ruta_video_salida='./video/procesado/', formato='.mp4', fps=30):
+    # Verificar si la ruta de salida existe, si no, crearla
+    if not os.path.exists(ruta_video_salida):
+        os.makedirs(ruta_video_salida)
+        print("Carpeta creada: "+ruta_video_salida)
+
+    # Leer el video de entrada
+    cap = cv2.VideoCapture(ruta_video)
+    if not cap.isOpened():
+        print("Error: No se puede abrir el video.")
+        return
+
+    # Obtener ancho y alto de los frames del video
+    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+    # Definir el codec y crear el objeto VideoWriter
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec para .mp4
+    out = cv2.VideoWriter(os.path.join(ruta_video_salida, nombre_video_salida + formato), fourcc, fps, (width, height))
+
+    while True:
+        ret, frame = cap.read()  # Leer frame por frame
+        if not ret:
+            break
+
+        # Procesar el frame usando la función detect_objects
+        frame_procesado = yolo.detect_objects(frame)
+
+        # Escribir el frame procesado en el video de salida
+        out.write(frame_procesado)
+
+    # Liberar los objetos VideoCapture y VideoWriter
+    cap.release()
+    out.release()
+
+    print(f"¡Video '{nombre_video_salida}{formato}' creado y procesado exitosamente en '{ruta_video_salida}'!")
