@@ -39,6 +39,9 @@ def crear_video_desde_imagenes(ruta_carpeta_entrada_video, nombre_video_salida='
     video_salida.release()
     print(f"¡Video '{nombre_video_salida}{formato}' creado exitosamente en '{ruta_video_salida}'!")
 
+import os
+import cv2
+
 def procesar_video(ruta_video, nombre_video_salida='output_video', ruta_video_salida='./video/procesado/', formato='.mp4', fps=30):
     # Verificar si la ruta de salida existe, si no, crearla
     if not os.path.exists(ruta_video_salida):
@@ -59,6 +62,9 @@ def procesar_video(ruta_video, nombre_video_salida='output_video', ruta_video_sa
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec para .mp4
     out = cv2.VideoWriter(os.path.join(ruta_video_salida, nombre_video_salida + formato), fourcc, fps, (width, height))
 
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    frames_procesados = 0
+
     while True:
         ret, frame = cap.read()  # Leer frame por frame
         if not ret:
@@ -70,8 +76,17 @@ def procesar_video(ruta_video, nombre_video_salida='output_video', ruta_video_sa
         # Escribir el frame procesado en el video de salida
         out.write(frame_procesado)
 
+        # Incrementar el contador de frames procesados
+        frames_procesados += 1
+
+        # Calcular el porcentaje de avance
+        porcentaje_avance = (frames_procesados / total_frames) * 100
+
+        # Imprimir el porcentaje de avance
+        print(f"{nombre_video_salida} Procesando... {porcentaje_avance:.2f}% completado", end='\r')
+
     # Liberar los objetos VideoCapture y VideoWriter
     cap.release()
     out.release()
 
-    print(f"¡Video '{nombre_video_salida}{formato}' creado y procesado exitosamente en '{ruta_video_salida}'!")
+    print(f"\n¡Video '{nombre_video_salida}{formato}' creado y procesado exitosamente en '{ruta_video_salida}'!")
