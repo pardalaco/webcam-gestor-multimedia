@@ -39,9 +39,6 @@ def crear_video_desde_imagenes(ruta_carpeta_entrada_video, nombre_video_salida='
     video_salida.release()
     print(f"¡Video '{nombre_video_salida}{formato}' creado exitosamente en '{ruta_video_salida}'!")
 
-import os
-import cv2
-
 def procesar_video(ruta_video, nombre_video_salida='output_video', ruta_video_salida='./video/procesado/', formato='.mp4', fps=30):
     # Verificar si la ruta de salida existe, si no, crearla
     if not os.path.exists(ruta_video_salida):
