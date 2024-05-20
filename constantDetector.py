@@ -29,7 +29,7 @@ def mostrar_imagen(img_cv):
         # Mostrar la imagen en una ventana
         cv2.imshow('Imagen Descargada', img_cv)
         # Esperar 5 segundos antes de descargar la siguiente imagen
-        cv2.waitKey(61000)  # Esperar 61 segundos (61000 ms)
+        cv2.waitKey(15000)  # Esperar 15 segundos (15000 ms)
         # Cerrar la ventana de la imagen
         cv2.destroyWindow('Imagen Descargada')
     except Exception as e:
