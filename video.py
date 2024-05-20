@@ -48,7 +48,7 @@ def procesar_video(ruta_video, nombre_video_salida='output_video', ruta_video_sa
     # Leer el video de entrada
     cap = cv2.VideoCapture(ruta_video)
     if not cap.isOpened():
-        print("Error: No se puede abrir el video.")
+        print("Error: No se puede abrir el video "+ruta_video+".")
         return
 
     # Obtener ancho y alto de los frames del video
