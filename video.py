@@ -71,7 +71,7 @@ def procesar_video(ruta_video, nombre_video_salida='output_video', ruta_video_sa
         frame_procesado = yolo.detect_objects(frame)
 
         # Escribir el frame procesado en el video de salida
-        out.write(frame_procesado)
+        out.write(frame_procesado[0])
 
         # Incrementar el contador de frames procesados
         frames_procesados += 1

@@ -63,6 +63,8 @@ def detect_objects(image_cv2):
     # Aplicar la supresión de no máximos para eliminar las cajas delimitadoras redundantes
     idx = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.5)
 
+    label_count = {}
+
     # Dibujar las cajas y las etiquetas en la imagen
     if len(idx) > 0:
         for i in idx.flatten():
@@ -76,6 +78,13 @@ def detect_objects(image_cv2):
             cv2.rectangle(image_cv2, (x, y), (x + w, y + h), color, 2)
             # Dibujar la etiqueta en la imagen
             cv2.putText(image_cv2, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+            
+            # Contar la etiqueta
+            label = LABELS[classIDs[i]]
+            if label in label_count:
+                label_count[label] += 1
+            else:
+                label_count[label] = 1
 
     # Devolver la imagen procesada
-    return image_cv2
+    return image_cv2, label_count
