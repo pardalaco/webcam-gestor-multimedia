@@ -1,5 +1,5 @@
 import multiprocessing
-import imgDownloader
+import imgSaver
 import dailyRoutine
 import signal
 
@@ -15,7 +15,7 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, stop_programs)  # Capturar la señal Ctrl + C
 
     # Crear procesos para ejecutar los programas
-    process1 = multiprocessing.Process(target=imgDownloader.main)
+    process1 = multiprocessing.Process(target=imgSaver.main)
     process2 = multiprocessing.Process(target=dailyRoutine.main)
 
     # Iniciar los procesos
