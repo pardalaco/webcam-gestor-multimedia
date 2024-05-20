@@ -35,7 +35,7 @@ def main():
             video.crear_video_desde_imagenes(ruta_carpeta_entrada_video, nombre_video_salida)
             
             # Video procesado
-            ruta_video_procesado_entrada = "./video/sin_procesar/" + nombre_video_salida
+            ruta_video_procesado_entrada = "./video/sin_procesar/" + nombre_video_salida + ".mp4"
             video.procesar_video(ruta_video_procesado_entrada, nombre_video_salida)
 
     except KeyboardInterrupt:
