@@ -1,6 +1,9 @@
 import cv2
 import numpy as np
 
+# Resaltar que este programa no es mio, sino que es un programa adaptado
+# Programa original extraido de https://omes-va.com/deteccion-de-objetos-yolov3-dnn-opencv-python/
+
 # --------------- READ DNN MODEL ---------------
 # Configuración del modelo
 config = "yolo_object_detector/model/yolov3.cfg"

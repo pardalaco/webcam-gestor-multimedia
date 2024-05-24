@@ -3,6 +3,7 @@ import video
 import time
 from datetime import datetime, timedelta
 
+# Función que suspende el programa hasta las 00:05 de la noche
 def wait_midnight():
     # Calcular cuánto tiempo falta hasta la medianoche
     ahora = time.localtime()
@@ -13,11 +14,13 @@ def wait_midnight():
     # Suspender el programa hasta la medianoche
     time.sleep(segundos_hasta_medianoche)
 
+# Devuelve la data
 def get_date_previous_day():
     fecha_actual = datetime.now() - timedelta(days=1)
     fecha_anterior = fecha_actual.strftime('%Y-%m-%d')
     return fecha_anterior
 
+# Rutina de ejecución diaria
 def main():
     print("Starting program dailyRoutine.py")
 
@@ -27,7 +30,7 @@ def main():
             print("Daily routine running...")
 
             # Comprimir carpetas
-            compress.comprimir_carpetas_antiguas()
+            compress.comprimir_carpetas_antiguas() # Comprime y elimina las carpetas de hace más de 5 días
 
             # Generate video
             nombre_video_salida = get_date_previous_day()

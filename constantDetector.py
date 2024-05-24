@@ -3,7 +3,9 @@ import cv2
 import numpy as np
 import yolo_object_detector.yolo_detector_function as yolo
 
+# Programa para monitorizar las personas que pasan por la camara web
 
+# Función para descargar imagen de url
 def descargar_imagen(url):
     try:
         # Definir un User-Agent personalizado
@@ -24,6 +26,7 @@ def descargar_imagen(url):
     except Exception as e:
         print("Ocurrió un error:", str(e))
 
+# Función para mostrar imagen
 def mostrar_imagen(img_cv):
     try:
         # Mostrar la imagen en una ventana

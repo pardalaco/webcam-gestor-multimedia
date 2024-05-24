@@ -4,6 +4,7 @@ from datetime import datetime
 import time
 import imgDownloader as dw
 
+# Función la cual se le pasa una imagen y un directorio, y guarda la imagen con el formato y nombre determinado
 def guardar_imagen(imagen, directorio_destino):
     try:
         # Obtener la fecha y hora actual
@@ -29,12 +30,14 @@ def guardar_imagen(imagen, directorio_destino):
     except Exception as e:
         print("Ocurrió un error al guardar la imagen:", str(e))
 
+# Función para suspender x minutos
 def suspender_programa(minutos):
     # Convertir minutos a segundos
     segundos = minutos * 60
     # Suspender el programa durante el tiempo especificado
     time.sleep(segundos)
 
+# Función principal para que se descargue una imagen cada minuto
 def main():
     print("Starting imgDownloader.py")
 

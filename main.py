@@ -3,6 +3,8 @@ import imgSaver
 import dailyRoutine
 import signal
 
+# Programa de inicio, al inicializar este programa, inicializa los programas necesarios para poner en marcha la aplicación
+
 def stop_programs(signum, frame):
     print("\nCtrl + C detectado. Deteniendo los programas...")
     process1.terminate()
@@ -15,8 +17,8 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, stop_programs)  # Capturar la señal Ctrl + C
 
     # Crear procesos para ejecutar los programas
-    process1 = multiprocessing.Process(target=imgSaver.main)
-    process2 = multiprocessing.Process(target=dailyRoutine.main)
+    process1 = multiprocessing.Process(target=imgSaver.main) # Cada minuto desgarga una imagen
+    process2 = multiprocessing.Process(target=dailyRoutine.main) # Cada dia a las 12:05 ejecuta una rutina de creación de video, compresión de imagenes...
 
     # Iniciar los procesos
     process1.start()

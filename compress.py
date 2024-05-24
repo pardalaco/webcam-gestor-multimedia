@@ -3,6 +3,7 @@ import datetime
 import shutil
 import zipfile
 
+# Función para comprimir y eliminar las carpetas de hace más de 5 días
 def comprimir_carpetas_antiguas(ruta_carpeta="./img/", dias=5, ruta_guardado="./zips/"):
     # Verificar si la carpeta de entrada existe
     if not os.path.isdir(ruta_carpeta):

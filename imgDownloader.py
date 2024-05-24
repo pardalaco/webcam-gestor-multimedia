@@ -6,6 +6,7 @@ import numpy as np
 import cv2
 
 
+#Función para descargar imagen de url
 def descargar_imagen(url):
     try:
         # Definir un User-Agent personalizado
@@ -24,6 +25,7 @@ def descargar_imagen(url):
     except Exception as e:
         print("Ocurrió un error:", str(e))
 
+# Función para convertir imagen de url a cv2
 def imagen_to_cv2(content):
     try:
         # Convertir los datos de la imagen en un array de bytes
