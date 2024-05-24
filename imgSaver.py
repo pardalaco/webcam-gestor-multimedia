@@ -3,9 +3,10 @@ import os
 from datetime import datetime
 import time
 import imgDownloader as dw
+import configs
 
 # Función la cual se le pasa una imagen y un directorio, y guarda la imagen con el formato y nombre determinado
-def guardar_imagen(imagen, directorio_destino):
+def guardar_imagen(imagen, directorio_destino = './img/'):
     try:
         # Obtener la fecha y hora actual
         ahora = datetime.now()
@@ -42,15 +43,13 @@ def main():
     print("Starting imgDownloader.py")
 
     # URL de la página web
-    url_pagina = 'https://www.acifalcoi.com/webcam/menejador.jpg'
+    url_pagina = configs.url_webcam
 
-    # Directorio donde se guardarán las imágenes descargadas
-    directorio_destino = './img'
 
     try:
         while True:
             img = dw.descargar_imagen(url_pagina)
-            guardar_imagen(img, directorio_destino)
+            guardar_imagen(img)
             suspender_programa(1.05)
     except KeyboardInterrupt:
         print("\nCtrl + C detectado. Deteniendo el programa imgDownloader.py.")
