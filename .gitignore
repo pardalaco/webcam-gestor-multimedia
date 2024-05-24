@@ -6,3 +6,6 @@ yolo_object_detector/model/yolov3.weights
 /__pycache__
 /yolo_object_detector/__pycache__
 tmp/
+multimedia/img/*
+multimedia/video/*
+multimedia/zips/*

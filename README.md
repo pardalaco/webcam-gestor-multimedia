@@ -20,6 +20,9 @@ requests
 numpy
 ```
 
+Por favor, asegúrese de descargar el archivo [yolov3.weights](https://pjreddie.com/media/files/yolov3.weights) o puede encontrarlo en la página [opencv-tutorial.readthedocs.io](https://opencv-tutorial.readthedocs.io/en/latest/yolo/yolo.html). Coloque este archivo dentro de la carpeta `yolo_object_detector/model` para que el programa funcione correctamente.
+
+
 ## Instalación
 
 1. Clona el repositorio:
@@ -34,7 +37,8 @@ numpy
    ```bash
    pip install -r requirements.txt
    ```
-4. Instala las dependencias:
+4. Descarga el archivo yolov3.weights desde aquí o desde la página y colócalo dentro de la carpeta `yolo_object_detector/model`.
+5. Instala las dependencias:
    ```bash
    python3 main.py
    ```
@@ -75,6 +79,7 @@ webcamGestorMultimedia/
 │   │   ├── nombre_del_otro_dia.zip
 │   │   └── ...
 │   └── video/
+│       ├── yolo_detector_function.py
 │       ├── sin_procesar/
 │       │   ├── nombre_del_dia.mp4
 │       │   ├── nombre_del_otro_dia.mp4
@@ -83,6 +88,18 @@ webcamGestorMultimedia/
 │           ├── nombre_del_dia.mp4
 │           ├── nombre_del_otro_dia.mp4
 │           └── ...
+│
+├── yolo_object_detector/
+│   └── model/
+│       ├── coco.names
+│       ├── yolov3.cfg
+│       └── yolov3.weights
+│
+├── compress.py
+├── configs.py
+├── dailyRoutine.py
+├── imgDownloader.py
+├── imgSaver.py
 │
 ├── main.py
 ├── requirements.txt
