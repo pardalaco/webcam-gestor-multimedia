@@ -5,3 +5,4 @@ yolo_object_detector/model/yolov3.weights
 .DS_Store
 /__pycache__
 /yolo_object_detector/__pycache__
+tmp/
