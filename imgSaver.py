@@ -6,7 +6,7 @@ import imgDownloader as dw
 import configs
 
 # Función la cual se le pasa una imagen y un directorio, y guarda la imagen con el formato y nombre determinado
-def guardar_imagen(imagen, directorio_destino = './img/'):
+def guardar_imagen(imagen, directorio_destino = './multimedia/img/'):
     try:
         # Obtener la fecha y hora actual
         ahora = datetime.now()

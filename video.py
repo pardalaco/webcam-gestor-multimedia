@@ -3,7 +3,7 @@ import os
 import yolo_object_detector.yolo_detector_function as yolo
 
 # Función a la que se le pasa una ruta de una carpeta analiza las imagenes y genera un video
-def crear_video_desde_imagenes(ruta_carpeta_entrada_video, nombre_video_salida='output_video', ruta_video_salida='./video/sin_procesar/', formato='.mp4', fps=30):
+def crear_video_desde_imagenes(ruta_carpeta_entrada_video, nombre_video_salida='output_video', ruta_video_salida='./multimedia/video/sin_procesar/', formato='.mp4', fps=30):
     # Verificar si la ruta de salida existe, si no, crearla
     if not os.path.exists(ruta_video_salida):
         os.makedirs(ruta_video_salida)
@@ -41,7 +41,7 @@ def crear_video_desde_imagenes(ruta_carpeta_entrada_video, nombre_video_salida='
     print(f"¡Video '{nombre_video_salida}{formato}' creado exitosamente en '{ruta_video_salida}'!")
 
 # Función la cual se le pasa la ruta de un video y usando la librería yolo detecta objetos/personas...
-def procesar_video(ruta_video, nombre_video_salida='output_video', ruta_video_salida='./video/procesado/', formato='.mp4', fps=30):
+def procesar_video(ruta_video, nombre_video_salida='output_video', ruta_video_salida='./multimedia/video/procesado/', formato='.mp4', fps=30):
     # Verificar si la ruta de salida existe, si no, crearla
     if not os.path.exists(ruta_video_salida):
         os.makedirs(ruta_video_salida)
